@@ -5,7 +5,7 @@ import scipy.optimize as optimize
 import pylab as plt
 from scipy.odr import odrpack
 
-V, DV, X, DX =sp.loadtxt('C:\\Users\\Francesco\\Desktop\\STUDIO\\UNIVERSITA\\LABORATORIO DI FISICA\\LABORATORIO DI FISICA 2\\ANALISI DATI\\ARDUINO_CALIBRATION\\DATA\\CAL.ARDUINO.txt', unpack='true')
+V, DV, X, DX =sp.loadtxt('dati.txt', unpack='true')
 
 def Volt(x, a, b):
     return(a*x+b)
