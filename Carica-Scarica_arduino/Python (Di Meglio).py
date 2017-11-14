@@ -6,7 +6,7 @@ import scipy.stats as stats
 import pylab as plt
 
 #PROCESSO DI CARICA
-t, V=np.loadtxt('C:\\Users\\Francesco\\Desktop\\STUDIO\\UNIVERSITA\\LABORATORIO DI FISICA\\LABORATORIO DI FISICA 2\\ANALISI DATI\\CAPACITOR\\DATA\\DATI GABRIELE\\CARICA.txt', unpack='true')
+t, V=np.loadtxt('asd_C3.txt', unpack='true')
 Dt, DV=4, 1         #Valori nominali dati dalla risoluzione strumentale
 
 def Volt(x, a, b):
@@ -31,15 +31,20 @@ plt.title('CAPACITOR CHARGE')
 plt.xlabel('Tempo [us]')
 plt.ylabel('DV [digit]')
 plt.errorbar(t, V, Dt, DV, '.')
-plt.plot(t, Volt(t, Vz, tau))
+x=np.linspace(0,30000,1000)
+y=np.array([])
+for i in range (0,len(x)):
+	y=np.insert(y,len(y),x[i])
+print(len(x),len(y))
+plt.plot(x,y)
 plt.subplot(212)
 plt.plot(np.linspace(0, 260, 1000), costant(np.linspace(0, 260, 1000), 0))
 plt.plot((V-Volt(t, Vz, tau))/DV, 'o')
 plt.show()
-
+print('-------------')
 
 #♠PROCESSO DI SCARICA
-t, V=np.loadtxt('C:\\Users\\Francesco\\Desktop\\STUDIO\\UNIVERSITA\\LABORATORIO DI FISICA\\LABORATORIO DI FISICA 2\\ANALISI DATI\\CAPACITOR\\DATA\\DATI GABRIELE\\SCARICA.txt', unpack='true')
+t, V=np.loadtxt('asd_S3.txt', unpack='true')
 Dt, DV=4, 1
 
 def Volt(x, a, b, c):
