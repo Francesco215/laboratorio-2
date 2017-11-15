@@ -1,17 +1,17 @@
 import numpy as np
-import scipy as so
 import pylab as plt
 import scipy.optimize as optimize
 import scipy.stats as stats
 from scipy.odr import odrpack
 
-t, V=np.loadtxt('C:\\Users\\Francesco\\Desktop\\STUDIO\\UNIVERSITA\\LABORATORIO DI FISICA\\LABORATORIO DI FISICA 2\\ANALISI DATI\\WAVE GENERATOR\\DATA\\DATI GABRIELE\\DATI_GABRIELE.txt' , unpack='true')
+t, V=np.loadtxt('dati1.txt' , unpack='true')
 Dt, DV=(4, 1)
 
 #ONDA SINUSOUISALE      :i dati vengono sbagliati (non so ancora il perchè)
-'''def  Wave(x, a, b, w, d):
+def  Wave(x, a, b, w, d):
     return(a*np.cos(w*x+b)+d)
-    
+
+'''    
 popt, pcov=optimize.curve_fit(Wave, t, V, (300000, 2e-3, 218, 300), sigma=DV, absolute_sigma='false')
 
 Vz, phi, w, offset=popt
@@ -33,9 +33,10 @@ def Wave1(A, x):
     
 model=odrpack.Model(Wave1)
 data=odrpack.RealData(t, V, sx=Dt, sy=DV)
-odr=odrpack.ODR(data, model, beta0=(300000, 2e-3, 218, 300))
+odr=odrpack.ODR(data, model, beta0=(400, 157e-6, 3, 600))
 out=odr.run()
 popt, pcov=out.beta, out.cov_beta
+print(popt)
 Vz, w, phi, offset=popt
 DVz, Dw, Dphi, Doffset=np.sqrt(pcov.diagonal())
 chi2=out.sum_square
@@ -64,8 +65,12 @@ plt.title('Wave Generator')
 plt.xlabel('Time[us]')
 plt.ylabel('DV[digit]')
 plt.errorbar(t, V, Dt, DV, '.')
-plt.plot(np.linspace(0, 28900, 30000), Wave(np.linspace(0, 28900, 30000), Vz, phi, w, offset))
+plt.plot(np.linspace(0, 140000, 30000), Wave(np.linspace(0, 140000, 30000), Vz, phi, w, offset))
 plt.subplot(212)
-plt.plot((V-Wave(t, Vz, w, phi, offset))/DV)
+plt.plot((V-Wave(t, Vz, w, phi, offset))/DV/1000)
 plt.plot(np.linspace(0, 254, 1000), costant(np.linspace(0, 254, 1000), 0))
+plt.show()
+
+plt.figure(2)
+plt.plot(t, V)
 plt.show()
