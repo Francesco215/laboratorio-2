@@ -11,8 +11,8 @@ Dt, DV=(4, 1)
 def  Wave(x, a, b, w, d):
     return(a*np.cos(w*x+b)+d)
 
-'''    
-popt, pcov=optimize.curve_fit(Wave, t, V, (300000, 2e-3, 218, 300), sigma=DV, absolute_sigma='false')
+  
+popt, pcov=optimize.curve_fit(Wave, t, V, (400, 157e-6, 3, 600), sigma=DV, absolute_sigma='false')
 
 Vz, phi, w, offset=popt
 DVz, Dphi, Dw, Doffset=np.sqrt(pcov.diagonal())
@@ -36,7 +36,6 @@ data=odrpack.RealData(t, V, sx=Dt, sy=DV)
 odr=odrpack.ODR(data, model, beta0=(400, 157e-6, 3, 600))
 out=odr.run()
 popt, pcov=out.beta, out.cov_beta
-print(popt)
 Vz, w, phi, offset=popt
 DVz, Dw, Dphi, Doffset=np.sqrt(pcov.diagonal())
 chi2=out.sum_square
@@ -46,7 +45,7 @@ print('Omega odr=%f+-%f' %(w, Dw))
 print('Sfasamento odr=%f+-%f' %(phi, Dphi))
 print('Offset odr=%f+-%f' %(offset, Doffset))
 print('Chi Quadro normalizzato=%f' %chi2_norm)
-
+'''
 corr=np.corrcoef(pcov)
 #MATRICE DI CORRELAZIONE     :ottenuta partendo da quella di covarianza
 for i in range(0, 3):
