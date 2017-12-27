@@ -13,7 +13,7 @@ ard.write(b'5')#intervallo (ritardo) in unita' di 10 ms <<<< questo si puo' camb
  
 print('Start!\n') # scrive sulla console (terminale)
 Directory='dati/'   # nome directory dove salvare i file dati
-FileName=(Directory+'suca.txt') # nomina il file dati <<<< DA CAMBIARE SECONDO GUSTO 
+FileName=(Directory+'25hz.txt') # nomina il file dati <<<< DA CAMBIARE SECONDO GUSTO 
 
 outputFile = open(FileName, "w+" ) # apre file dati in scrittura
 
