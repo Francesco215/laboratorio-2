@@ -24,3 +24,11 @@ def errVoltOscilloscopio(volt,risoluzione):
 
 def errFreqOscilloscopio(freq,risoluzione):
 	return np.sqrt(risoluzione**2+(freq/100)**2)
+
+def RicercaMaxMin(y):
+	massimi=np.array([])
+	minimi=np.array([])
+	for i in range(2,len(y)):
+		if y[i-2]<y[i-1] and y[i]<y[i-1]: np.append(massimi,i-1)
+		if y[i-2]>y[i-1] and y[i]>y[i-1]: np.append(minimi,i-1)
+	return massimi.astype(int),minimi.astype(int)
