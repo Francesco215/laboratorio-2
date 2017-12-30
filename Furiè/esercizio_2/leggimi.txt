@@ -1,0 +1,2 @@
+per le onde a forma di pinna simulata ho usato l'equazione n16 del pdf four_2017 con un omega di taglio uguale a 300hz (l'ho scelta un pò a caso)
+per la parte "bis" ho sovrapposto all'onda raccolta con arduino in laboratorio la forma d'onda simulata con la frequenza di taglio misurata sperimentalmente uguale a 2,44*10^-4 hz

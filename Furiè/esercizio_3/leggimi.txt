@@ -1,0 +1,1 @@
+ho preso di dati il lab e gli ho sovrapposto la funzione simulata con la frequenza di taglio di 1,05*10^2 hz misurata in lab
