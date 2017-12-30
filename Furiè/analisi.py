@@ -46,8 +46,25 @@ def Pinna(t,Ampiezza,T,omega_taglio):
 def Attenuazione(frequenza,frequenza_taglio,a):
 	return a/np.sqrt(1+(frequenza/frequenza_taglio)**2)
 
+#esercizio 1
+x=np.linspace(0,4,1000)
+for i in range(1,12):
+	y=Triangolare(x,1,1,2**i)
+	pylab.plot(x,y)
+	pylab.xlabel('tempo[s]')
+	pylab.ylabel('Volt[V]')
+	pylab.title('triangolare con '+str(2**i)+' iterazioni')
+	pylab.savefig('esercizio_1/triangolare/'+str(2**(i))+'.png')
+	pylab.close()
+	y=Quadra(x,1,1,2**i)
+	pylab.xlabel('tempo[s]')
+	pylab.ylabel('Volt[V]')
+	pylab.title('quadra con '+str(2**i)+' iterazioni')
+	pylab.plot(x,y)
+	pylab.savefig('esercizio_1/quadra/'+str(2**(i))+'.png')
+	pylab.close()
+
 #esercizio 2
-"""
 for i in range(0,10):
 	x=np.linspace(0,2**(-i+2),1000)
 	y=Pinna(x,1,2**(-i),3e2)
@@ -57,7 +74,20 @@ for i in range(0,10):
 	pylab.savefig('esercizio_2/'+str(2**(i))+'hz.png')
 	pylab.close()
 
-file=np.loadtxt('Filtro_rc_ampiezza.txt')
+#esercizio 2 bis
+t,V=np.loadtxt('dati/35hz.txt',unpack='true')
+massimi,minimi=RicercaMaxMin(V,max(V)-100,min(V)+100)
+x=np.linspace(0,t[-1],len(t)*10)
+y=Pinna(x,V[massimi[1]]-V[minimi[1]],t[massimi[1]]-t[massimi[2]],freq_taglio)
+
+V=V-(V[massimi[1]]+V[minimi[1]])/2
+pylab.plot(x,y)
+pylab.plot(t,V)
+pylab.savefig('esercizio_2/bis/35hz.png')
+pylab.show()
+
+#esercizio 3
+file=np.loadtxt('dati/Filtro_rc_ampiezza.txt')
 Vout,dVout,f,df=np.transpose(file)
 pylab.errorbar(f,Vout,dVout,df,'.')
 x=np.linspace(np.log(f[0]),np.log(f[-1]),100)
@@ -68,20 +98,6 @@ pylab.yscale('log')
 pylab.plot(x,y)
 pylab.xlabel('frequenza [hz]')
 pylab.ylabel('Vout [V]')
-pylab.savefig('filtro_RC.png')
-pylab.show()
-"""
-
-t_0,V_0=np.loadtxt('dati/25hz.txt',unpack='true')
-t,V=np.loadtxt('dati/35hz.txt',unpack='true')
-
-massimi,minimi=RicercaMaxMin(V,max(V)-100,min(V)+100)
-x=np.linspace(0,t[-1],len(t)*10)
-y=Pinna(x,V_0[massimi[1]]-V_0[minimi[1]],t[massimi[1]]-t[massimi[2]],freq_taglio)
-
-V=V-(V[massimi[1]]+V[minimi[1]])/2
-pylab.plot(x,y)
-pylab.plot(t,V)
-pylab.savefig('esercizio_2/bis/35hz.png')
+pylab.savefig('esercizio_3/filtro_RC.png')
 pylab.show()
 
