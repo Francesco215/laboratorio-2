@@ -8,7 +8,7 @@ def shock(V, I0, nVt) :
 def derivata(V, I0, nVt) :
     return (I0/nVt)*np.exp(V/nVt)
 
-freq_treno, V_lum = np.genfromtxt("coso_led.txt", unpack=True, skip_header=3)
+freq_treno, V_lum = np.genfromtxt("dati/seconda_parte/pollice.txt", unpack=True, skip_header=3)
 
 V_lum[:8] += 0.007
 V_lum[-10:] += -0.001
@@ -61,7 +61,7 @@ plt.xlabel("ddp [V]")
 plt.ylabel("I [mA]")
 plt.errorbar(V_lum, I, dI, dV_lum, fmt = '.', label = "Data")
 plt.plot(t, shock(t,*popt), label = "Fit", color = 'red')
-plt.legend()
+#plt.legend()
 
 plt.subplot(212)
 plt.title("Residui normalizzati")
