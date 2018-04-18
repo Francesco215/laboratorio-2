@@ -5,7 +5,7 @@ import scipy.stats as stats
 from uncertainties import ufloat
 
 #DATI
-t, Dt , V, DV=np.loadtxt('/Users/francescopaolo/Desktop/UNIVERSITY/LABORATORIO/LABORATORIO_2/ESPERIENZE/CIRCUITO_RLC/DATAS/ave_ramen.txt', unpack='true')
+t, Dt , V, DV=np.loadtxt('DATAS/ave_ramen.txt', unpack='true')
 #DV, Dt=(1., 1.74)
 
 def Volt(x, A, tau, w, phi, Vbias):
